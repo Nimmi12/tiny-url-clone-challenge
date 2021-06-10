@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: visitors
+#
+#  id               :bigint           not null, primary key
+#  shortened_url_id :bigint           not null
+#  ip_address       :string
+#  no_of_visits     :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
+one:
+  shortened_url: one
+  ip_address: MyString
+  no_of_visits: 1
+
+two:
+  shortened_url: two
+  ip_address: MyString
+  no_of_visits: 1

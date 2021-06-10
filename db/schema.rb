@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_235823) do
+ActiveRecord::Schema.define(version: 2021_06_10_003211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,14 @@ ActiveRecord::Schema.define(version: 2021_06_09_235823) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.bigint "shortened_url_id", null: false
+    t.string "ip_address"
+    t.integer "no_of_visits"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shortened_url_id"], name: "index_visitors_on_shortened_url_id"
+  end
+
+  add_foreign_key "visitors", "shortened_urls"
 end
