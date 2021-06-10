@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shortened Urls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Tiny URL</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shortened_urls.each do |shortened_url| %>
+      <tr>
+        <td><%= shortened_url.url %></td>
+        <td><%= link_to "#{@base_url}/#{shortened_url.slug}", "#{@base_url}/#{shortened_url.slug}" %></td>
+        <td><%= link_to 'Destroy', shortened_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Click here to shorten your Url', new_shortened_url_path %>
