@@ -13,6 +13,7 @@ class ShortenedUrlsController < ApplicationController
   # GET /shortened_urls/1 or /shortened_urls/1.json
   def show
     @shortened_url = ShortenedUrl.find_by(slug: params[:id])
+    add_visitors_info
     redirect_to @shortened_url.url
   end
 
@@ -55,6 +56,13 @@ class ShortenedUrlsController < ApplicationController
 
   def generate_slug
     SecureRandom.hex(10)
+  end
+
+  def add_visitors_info
+    address = request.remote_ip
+    vistor_rec = @shortened_url.visitors.find_or_create_by(ip_address: address)
+    visits = (vistor_rec&.no_of_visits || 0) + 1
+    vistor_rec&.update(no_of_visits: visits)
   end
 
   # Only allow a list of trusted parameters through.
