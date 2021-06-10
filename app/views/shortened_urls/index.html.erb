@@ -7,7 +7,7 @@
     <tr>
       <th>Original Url</th>
       <th>Tiny URL</th>
-      <th colspan="1"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -16,6 +16,7 @@
       <tr>
         <td><%= shortened_url.url %></td>
         <td><%= link_to "#{@base_url}/#{shortened_url.slug}", "#{@base_url}/#{shortened_url.slug}" %></td>
+        <td><%= link_to 'More Info', [shortened_url, :visitors] %></td>
         <td><%= link_to 'Destroy', shortened_url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

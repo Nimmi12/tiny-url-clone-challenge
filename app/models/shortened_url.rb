@@ -16,4 +16,7 @@ class ShortenedUrl < ApplicationRecord
 
   validates :slug, presence: true
   validates_uniqueness_of :slug
+
+  # Associations ...
+  has_many :visitors, dependent: :destroy
 end
